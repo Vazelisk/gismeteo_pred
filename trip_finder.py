@@ -323,10 +323,6 @@ def find_cheapest_ticket(city: str) -> dict:
     bests_sorted = sorted(bests)
     best = {'price': bests_sorted[-1]}
 
-    if len(bests) == 0:
-        bests.append('No tickets, sorry')
-        best = {'error_text': bests}
-
     return best
 
 
