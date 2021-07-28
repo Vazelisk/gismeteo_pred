@@ -123,7 +123,8 @@ def get_precipitations(soup: BeautifulSoup) -> List[int]:
     temp_precipitation = re.findall('">(.+?)</div>', str(precipitation_html), re.DOTALL)
     precipitations = []
     if len(temp_precipitation) == 0:
-        precipitations.append('Без осадков')
+        for n in range(10):
+            precipitations.append('Без осадков')
 
     for el in temp_precipitation:  # через обычную регулярку с (\d.+) у меня почему-то не искало
         prec = re.findall(r'\d|,', el)
@@ -186,9 +187,9 @@ def load_forecast(link: str) -> List[dict]:
     l_forecast = []
     for n in range(10):
         date = datetime.now() + timedelta(days=n)
-        date = date.strftime("%Y-%m-%d"),
+        date = date.strftime("%Y-%m-%d")
         d = {
-            'date': date[0],
+            'date': date,
             'city': city,
             'summary': summaries[n],
             'max_temp': temps[0][n],
